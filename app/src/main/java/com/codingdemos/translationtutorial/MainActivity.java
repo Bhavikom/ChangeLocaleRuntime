@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView mTextView;
-    Spinner mLanguage;
+    Spinner spinnerLanguage;
     ArrayAdapter<String> mAdapter;
 
     @Override
@@ -21,20 +21,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLanguage = (Spinner) findViewById(R.id.spLanguage);
+        spinnerLanguage = (Spinner) findViewById(R.id.spLanguage);
         mTextView = (TextView) findViewById(R.id.textView);
         mAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.language_option));
-        mLanguage.setAdapter(mAdapter);
+        spinnerLanguage.setAdapter(mAdapter);
 
         if (LocaleHelper.getLanguage(MainActivity.this).equalsIgnoreCase("en")) {
-            mLanguage.setSelection(mAdapter.getPosition("English"));
+            spinnerLanguage.setSelection(mAdapter.getPosition("English"));
         } else if (LocaleHelper.getLanguage(MainActivity.this).equalsIgnoreCase("in")) {
-            mLanguage.setSelection(mAdapter.getPosition("Indonesian"));
+            spinnerLanguage.setSelection(mAdapter.getPosition("Indonesian"));
         } else {
-            mLanguage.setSelection(mAdapter.getPosition("Spanish"));
+            spinnerLanguage.setSelection(mAdapter.getPosition("Spanish"));
         }
 
-        mLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
